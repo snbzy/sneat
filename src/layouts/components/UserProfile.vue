@@ -1,5 +1,14 @@
 <script setup>
 import avatar1 from '@images/avatars/avatar-1.png'
+import store from "@/store";
+
+const logout=()=>{
+  store.dispatch('logout').then(() => {
+    location.href = '/login';
+  })
+}
+
+
 </script>
 
 <template>
@@ -119,7 +128,7 @@ import avatar1 from '@images/avatars/avatar-1.png'
               />
             </template>
 
-            <VListItemTitle>Logout</VListItemTitle>
+            <VListItemTitle @click="logout">Logout</VListItemTitle>
           </VListItem>
         </VList>
       </VMenu>

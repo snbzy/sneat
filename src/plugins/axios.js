@@ -24,38 +24,41 @@ axiosIns.interceptors.request.use(
 
 //响应拦截器。它允许你在接收到后端响应之后对响应进行一些处理，例如处理错误、统一处理响应数据等。
 axiosIns.interceptors.response.use(response => {
-    return response
-}, error => {
-    const { config, response: { status } } = error
-    const originalRequest = config
+        return response
+    },
+    error => {
 
-    if (status === 401) {
-        // 刷新token逻辑
-        // Make sure to change refresh token API endpoint
-        // return axiosIns.post('/auth/refresh-token', {
-        //     refreshToken: localStorage.getItem('refreshToken')
-        // }).then(({ data }) => {
-        //     if (data.accessToken) {
-        //
-        //         // Make sure localStorage key matches the key/name you use on login & register
-        //         localStorage.setItem('accessToken', data.accessToken)
-        //         localStorage.setItem('refreshToken', data.refreshToken)
-        //
-        //
-        //         // Update the headers with the new access token
-        //         axiosIns.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`
-        //
-        //         // Repeat the original request
-        //         return axiosIns(originalRequest)
-        //     } else {
-        //         // Handle the case where the refresh token is expired or invalid
-        //         // You can redirect to login page, show an error message, or whatever you want to do
-        //     }
-        // })
+        const { config, response: { status } } = error
+        const originalRequest = config
+
+        if (status === 401) {
+            // 刷新token逻辑
+            // Make sure to change refresh token API endpoint
+            // return axiosIns.post('/auth/refresh-token', {
+            //     refreshToken: localStorage.getItem('refreshToken')
+            // }).then(({ data }) => {
+            //     if (data.accessToken) {
+            //
+            //         // Make sure localStorage key matches the key/name you use on login & register
+            //         localStorage.setItem('accessToken', data.accessToken)
+            //         localStorage.setItem('refreshToken', data.refreshToken)
+            //
+            //
+            //         // Update the headers with the new access token
+            //         axiosIns.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`
+            //
+            //         // Repeat the original request
+            //         return axiosIns(originalRequest)
+            //     } else {
+            //         // Handle the case where the refresh token is expired or invalid
+            //         // You can redirect to login page, show an error message, or whatever you want to do
+            //     }
+            // })
+        }
+
+        return Promise.reject(error)
     }
-
-    return Promise.reject(error)
-});
+);
 
 
 export default axiosIns;

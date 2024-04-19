@@ -1,54 +1,29 @@
 <script setup>
+import { onMounted } from 'vue';
+import {listProject} from "@/utils/api";
+
 
 const form = ref({
-  firstName: '111',
+  firstName: '',
   email: '',
   mobile: false,
 })
-const desserts = [
-  {
-    dessert: 'Frozen Yogurt',
-    calories: 159,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Ice cream sandwich',
-    calories: 237,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Eclair',
-    calories: 262,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Cupcake',
-    calories: 305,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-  {
-    dessert: 'Gingerbread',
-    calories: 356,
-    fat: 6,
-    carbs: 24,
-    protein: 4,
-  },
-]
+
+onMounted(() => {
+  listProject().then(res=>{
+
+    projects.value = res.data.rows;
+  })
+});
+const projects = ref([])
+
 </script>
 
 <template>
   <VRow>
     <VCol cols="12">
-      <VCard title="Basic">
-        <VCardText>{{$store.state.user.token}}</VCardText>
+      <VCard title="Search Filters">
+
         <VCardText >
           <VForm @submit.prevent="() => {}">
             <VRow>
@@ -87,42 +62,72 @@ const desserts = [
           <thead>
           <tr>
             <th class="text-uppercase">
-              Desserts (100g Servings)
+              Project name
             </th>
             <th>
-              calories
+              Tier
             </th>
             <th>
-              Fat(g)
+              Cost type
             </th>
             <th>
-              Carbs(g)
+              Cost
             </th>
             <th>
-              protein(g)
+              Airdrop status
+            </th>
+            <th>
+              Task process
+            </th>
+            <th>
+              Related projects
+            </th>
+            <th>
+              Tags
+            </th>
+            <th>
+              Chain
             </th>
           </tr>
           </thead>
 
           <tbody>
           <tr
-            v-for="item in desserts"
+            v-for="item in projects"
             :key="item.dessert"
           >
             <td>
-              {{ item.dessert }}
+              <v-avatar>
+                <v-img
+                  alt="John"
+                  :src="item.projectUrl"
+                ></v-img>
+              </v-avatar>
+              <a :href="item.projectUrl" target="_blank" class="link-style">{{ item.projectName }}</a>
             </td>
             <td class="text-center">
-              {{ item.calories }}
+              {{ item.tier }}
             </td>
             <td class="text-center">
-              {{ item.fat }}
+              {{ item.costType }}
             </td>
             <td class="text-center">
-              {{ item.carbs }}
+              {{ item.cost }}
             </td>
             <td class="text-center">
-              {{ item.protein }}
+              {{ item.airdropStatus }}
+            </td>
+            <td class="text-center">
+              {{ item.taskProcess }}
+            </td>
+            <td class="text-center">
+              {{ item.relatedProject }}
+            </td>
+            <td class="text-center">
+              {{ item.tags }}
+            </td>
+            <td class="text-center">
+              {{ item.chain }}
             </td>
           </tr>
           </tbody>

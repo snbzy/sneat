@@ -20,17 +20,21 @@ const usernameRules =[
 const passwordRules=[
   v => !!v || 'Please enter a password.'
 ]
+const error=ref('')
 
 // $router.push('/')
 const onSubmit=()=>{
   refVForm.value?.validate()
     .then(({ valid: isValid }) => {
       if (isValid)
-        // console.log(form.value.username)
         loading.value=true
-      localStorage.removeItem("accessToken")
-        store.dispatch("user/login", form.value).then(() => {
-          router.push('/')
+        store.dispatch("login", form.value).then(res=> {
+          if(res.data.code===200){
+            router.push('/')
+          }else {
+            error.value="Email or Password is Invalid"
+            loading.value=false
+          }
         }).catch(() => {
           loading.value=false
         });
@@ -80,6 +84,7 @@ const onSubmit=()=>{
                 autofocus
                 placeholder="johndoe@email.com"
                 label="Username"
+                :error-messages="error"
                 type="email"
                 :rules="usernameRules"
               />
@@ -117,6 +122,7 @@ const onSubmit=()=>{
                 block
                 type="submit"
                 :loading="loading"
+                :disabled="loading"
               >
                 Login
               </VBtn>

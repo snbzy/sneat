@@ -120,6 +120,13 @@ const upgradeBanner = computed(() => {
       />
       <VerticalNavLink
         :item="{
+          title: 'Crypto Project',
+          icon: 'mdi-form-select',
+          to: '/crypto-project',
+        }"
+      />
+      <VerticalNavLink
+        :item="{
           title: 'Typography',
           icon: 'mdi-alpha-t-box-outline',
           to: '/typography',
@@ -154,13 +161,7 @@ const upgradeBanner = computed(() => {
         }"
       />
 
-      <VerticalNavLink
-        :item="{
-          title: 'Crypto project',
-          icon: 'mdi-form-select',
-          to: '/crypto-project',
-        }"
-      />
+
     </template>
 
     <template #after-vertical-nav-items>
