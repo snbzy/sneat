@@ -16,6 +16,12 @@ const project={
   tier: "s",
   cost: "11",
 }
+
+const items= [
+  { text: 'Real-Time', icon: 'mdi-clock', sub:'111'},
+  { text: 'Audience', icon: 'mdi-account', sub:'222'},
+  { text: 'Conversions', icon: 'mdi-flag', sub:'333'},
+]
 </script>
 
 <template>
@@ -31,18 +37,26 @@ const project={
         </VAvatar>
       </template>
 
+
       <VCardText >
-        <VList class="bg-transparent">
+        <hr class="v-divider my-4"/>
+        <VList  lines="one" density="compact" class="card-list" >
         <VListItem
-          v-for="key  in project"
-          :key="key"
-          :title="key"
+          v-for="(item, i) in items"
+          :key="i"
+          variant="text"
         >
 
+          <span class="text-body-1 text-medium-emphasis mr-2">{{item.text+':'}}</span>
+          <span>{{item.sub}}</span>
         </VListItem>
+
         </VList>
 
 
+      </VCardText>
+      <VCardText class="d-flex justify-center">
+        <VBtn >edit</VBtn>
       </VCardText>
     </VCard>
     </VCol>
