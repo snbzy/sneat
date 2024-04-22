@@ -122,7 +122,7 @@ const upgradeBanner = computed(() => {
         :item="{
           title: 'Crypto Project',
           icon: 'mdi-form-select',
-          to: '/crypto-project',
+          to: '/crypto/project',
         }"
       />
       <VerticalNavLink

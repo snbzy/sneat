@@ -22,7 +22,7 @@ const projects = ref([])
 <template>
   <VRow>
     <VCol cols="12">
-      <VCard title="Search Filters">
+      <VCard >
 
         <VCardText >
           <VForm @submit.prevent="() => {}">
@@ -56,6 +56,18 @@ const projects = ref([])
             </VRow>
           </VForm>
         </VCardText>
+      </VCard>
+    </VCol>
+
+      <VCol cols="12">
+      <VCard>
+        <VCardText class="d-flex flex-wrap ">
+            <VBtn class="" @click="$router.push('/crypto/add')"
+            >
+              add project
+            </VBtn>
+        </VCardText>
+
 
 
         <VTable>

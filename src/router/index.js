@@ -42,9 +42,14 @@ const router = createRouter({
           component: () => import('../pages/form-layouts.vue'),
         },
         {
-          path: 'crypto-project',
+          path: '/crypto/project',
           component: () => import('../pages/crypto-project.vue'),
-        }
+        },
+        {
+          path: '/crypto/add',
+          component: () => import('../views/pages/crypto-project/Add.vue'),
+        },
+
       ],
     },
     {
