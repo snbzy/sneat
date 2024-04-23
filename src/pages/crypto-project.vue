@@ -1,7 +1,8 @@
 <script setup>
 import { onMounted } from 'vue';
-import {listProject} from "@/utils/api";
+import {addProject, listProject} from "@/utils/api";
 
+const drawer =ref(false)
 
 const form = ref({
   firstName: '',
@@ -9,12 +10,22 @@ const form = ref({
   mobile: false,
 })
 
+const project = ref({
+  projectName: '',
+  projectUrl: '',
+  projectInfo: '',
+})
 onMounted(() => {
   listProject().then(res=>{
-
     projects.value = res.data.rows;
   })
 });
+
+const handleAdd =()=>{
+  addProject(project.value).then(res=>{
+    console.log(res.data)
+  })
+}
 const projects = ref([])
 
 </script>
@@ -61,8 +72,8 @@ const projects = ref([])
 
       <VCol cols="12">
       <VCard>
-        <VCardText class="d-flex flex-wrap ">
-            <VBtn class="" @click="$router.push('/crypto/add')"
+        <VCardText class="d-flex justify-end ">
+            <VBtn class="" @click.stop="drawer = !drawer"
             >
               add project
             </VBtn>
@@ -115,7 +126,10 @@ const projects = ref([])
                   :src="item.projectUrl"
                 ></v-img>
               </v-avatar>
-              <a :href="item.projectUrl" target="_blank" class="link-style">{{ item.projectName }}</a>
+              <router-link :to="'/crypto/add/' + item.id" class="link-type">
+                <span>{{ item.projectName }}</span>
+              </router-link>
+<!--              <a :href="item.projectUrl" target="_blank" class="link-style">{{ item.projectName }}</a>-->
             </td>
             <td class="text-center">
               {{ item.tier }}
@@ -149,4 +163,58 @@ const projects = ref([])
         </VCardText>
       </VCard>
     </VCol></VRow>
+  <v-navigation-drawer
+    v-model="drawer"
+    location="right"
+    temporary
+    :width="400"
+  >
+    <VCard title="add project">
+      <VCardText>
+        <VForm @submit.prevent="handleAdd">
+          <VRow>
+            <!-- 👉 First Name -->
+            <VCol
+              cols="12"
+            >
+              <VTextField
+                v-model="project.projectName"
+                label="Project Name"
+                placeholder="John"
+              />
+            </VCol>
+
+            <!-- 👉 Last Name -->
+            <VCol
+              cols="12"
+            >
+              <VTextField
+                v-model="project.projectUrl"
+                label="Project Url"
+                placeholder="Doe"
+              />
+            </VCol>
+
+            <VCol
+              cols="12"
+              class="d-flex justify-center gap-4"
+            >
+              <VBtn type="submit" >
+                Submit
+              </VBtn>
+
+              <VBtn
+                type="cancel"
+                color="secondary"
+                variant="tonal"
+                @click="drawer = false"
+              >
+                cancel
+              </VBtn>
+            </VCol>
+          </VRow>
+        </VForm>
+      </VCardText>
+    </VCard>
+  </v-navigation-drawer>
 </template>

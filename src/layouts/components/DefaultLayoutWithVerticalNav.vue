@@ -1,8 +1,8 @@
 <script setup>
 import { useTheme } from 'vuetify'
 import VerticalNavSectionTitle from '@/@layouts/components/VerticalNavSectionTitle.vue'
-import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
-import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
+// import upgradeBannerDark from '@images/pro/upgrade-banner-dark.png'
+// import upgradeBannerLight from '@images/pro/upgrade-banner-light.png'
 import VerticalNavLayout from '@layouts/components/VerticalNavLayout.vue'
 import VerticalNavLink from '@layouts/components/VerticalNavLink.vue'
 
@@ -13,9 +13,9 @@ import UserProfile from '@/layouts/components/UserProfile.vue'
 
 const vuetifyTheme = useTheme()
 
-const upgradeBanner = computed(() => {
-  return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
-})
+// const upgradeBanner = computed(() => {
+//   return vuetifyTheme.global.name.value === 'light' ? upgradeBannerLight : upgradeBannerDark
+// })
 </script>
 
 <template>
@@ -85,32 +85,32 @@ const upgradeBanner = computed(() => {
       />
 
       <!-- 👉 Pages -->
-      <VerticalNavSectionTitle
-        :item="{
-          heading: 'Pages',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Login',
-          icon: 'bx-log-in',
-          to: '/login',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Register',
-          icon: 'bx-user-plus',
-          to: '/register',
-        }"
-      />
-      <VerticalNavLink
-        :item="{
-          title: 'Error',
-          icon: 'bx-info-circle',
-          to: '/no-existence',
-        }"
-      />
+<!--      <VerticalNavSectionTitle-->
+<!--        :item="{-->
+<!--          heading: 'Pages',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Login',-->
+<!--          icon: 'bx-log-in',-->
+<!--          to: '/login',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Register',-->
+<!--          icon: 'bx-user-plus',-->
+<!--          to: '/register',-->
+<!--        }"-->
+<!--      />-->
+<!--      <VerticalNavLink-->
+<!--        :item="{-->
+<!--          title: 'Error',-->
+<!--          icon: 'bx-info-circle',-->
+<!--          to: '/no-existence',-->
+<!--        }"-->
+<!--      />-->
 
       <!-- 👉 User Interface -->
       <VerticalNavSectionTitle
@@ -164,23 +164,23 @@ const upgradeBanner = computed(() => {
 
     </template>
 
-    <template #after-vertical-nav-items>
-      <!-- 👉 illustration -->
-      <a
-        href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="margin-left: 7px;"
-      >
-        <img
-          :src="upgradeBanner"
-          alt="upgrade-banner"
-          transition="scale-transition"
-          class="upgrade-banner mx-auto"
-          style="max-width: 230px;"
-        >
-      </a>
-    </template>
+<!--    <template #after-vertical-nav-items>-->
+<!--      &lt;!&ndash; 👉 illustration &ndash;&gt;-->
+<!--      <a-->
+<!--        href="https://themeselection.com/item/sneat-vuetify-vuejs-admin-template"-->
+<!--        target="_blank"-->
+<!--        rel="noopener noreferrer"-->
+<!--        style="margin-left: 7px;"-->
+<!--      >-->
+<!--        <img-->
+<!--          :src="upgradeBanner"-->
+<!--          alt="upgrade-banner"-->
+<!--          transition="scale-transition"-->
+<!--          class="upgrade-banner mx-auto"-->
+<!--          style="max-width: 230px;"-->
+<!--        >-->
+<!--      </a>-->
+<!--    </template>-->
 
     <!-- 👉 Pages -->
     <slot />

@@ -18,36 +18,12 @@ export function listProject(query) {
     return axios.get('/project/list')
 }
 
-// 查询公告详细
-// export function getProject(projectId) {
-//     return request({
-//         url: '/project/query/' + projectId,
-//         method: 'get'
-//     })
-// }
-//
-// // 新增公告
-// export function addProject(data) {
-//     return request({
-//         url: '/project/add',
-//         method: 'post',
-//         data: data
-//     })
-// }
-//
-// // 修改公告
-// export function updateProject(data) {
-//     return request({
-//         url: '/project/update',
-//         method: 'put',
-//         data: data
-//     })
-// }
-//
-// // 删除公告
-// export function delNotice(projectId) {
-//     return request({
-//         url: '/project/delete/' + projectId,
-//         method: 'delete'
-//     })
-// }
+// 查询项目详情
+export function getProject(projectId) {
+    return axios.get('/project/'+projectId)
+}
+
+//新增项目
+export const addProject = (data) => {
+    return axios.post('/project/add', data);
+};

@@ -46,7 +46,7 @@ const router = createRouter({
           component: () => import('../pages/crypto-project.vue'),
         },
         {
-          path: '/crypto/add',
+          path: '/crypto/add/:projectId',
           component: () => import('../views/pages/crypto-project/Add.vue'),
         },
 
